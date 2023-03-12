@@ -16,25 +16,26 @@ public class DescribeClass {
             return;
         }
 
-        // - [ ] TODO: implement the functionality for Question 1
         /* Notes:
-         * - [ ] emit the interface of the class in Java syntax
-         * interface or class, 
+         * 
+         * Emit the interface of the class in Java syntax:
          * - [x] modifiers (with getConstructors())
-         * constructors, 
-         * methods, 
-         * fields; 
-         * no method bodies
+         * - [x] constructors, 
+         * - [x] methods, 
+         * - [ ] fields; 
+         * - [x] no method bodies
          */
         try {
             // Gets class using class loader
             Class<?> suppliedClass = java.lang.Class.forName(suppliedClassName);
 
+            // Prints class fields
+            
+            // Prints class constructors including modifiers
             Constructor<?>[] constructors = suppliedClass.getConstructors();
             System.out.println( "Constructors: " + java.util.Arrays.toString(constructors) + "\n" );
 
-
-            // Gets methods defined in class
+            // Prints class methods including modifiers
             Method[] methods = suppliedClass.getMethods();
             System.out.println(  "Methods: " + java.util.Arrays.toString(methods) + "\n" );
 
