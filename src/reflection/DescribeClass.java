@@ -1,12 +1,16 @@
 package reflection;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class DescribeClass {
     public static void main(String[] args) {
-        // Validates inputs from command line
+        /* 
+         * Validates the class name supplied via the command line.
+         * The program takes exactly one argument.
+         */
         String suppliedClassName;
         if ( args.length == 1 ) {
             suppliedClassName = args[0]; // e.g. "java.lang.String"
@@ -16,31 +20,30 @@ public class DescribeClass {
             return;
         }
 
-        /* Notes:
-         * 
-         * Emit the interface of the class in Java syntax:
-         * - [x] modifiers (with getConstructors())
-         * - [x] constructors, 
-         * - [x] methods, 
-         * - [ ] fields; 
-         * - [x] no method bodies
+        /* 
+         * Emits the interface of the class in Java syntax including
+         * - modifiers of the methods, fields, and constructors,
+         * - constructors,
+         * - methods,
+         * - fields,
          */
         try {
-            // Gets class using class loader
+            // Loads class
             Class<?> suppliedClass = java.lang.Class.forName(suppliedClassName);
 
             // Prints class fields
+            java.lang.reflect.Field[] fields = suppliedClass.getFields();
+            System.out.println(  "Fields: " + java.util.Arrays.toString(fields) + "\n"  );
             
             // Prints class constructors including modifiers
-            Constructor<?>[] constructors = suppliedClass.getConstructors();
+            java.lang.reflect.Constructor<?>[] constructors = suppliedClass.getConstructors();
             System.out.println( "Constructors: " + java.util.Arrays.toString(constructors) + "\n" );
 
             // Prints class methods including modifiers
-            Method[] methods = suppliedClass.getMethods();
+            java.lang.reflect.Method[] methods = suppliedClass.getMethods();
             System.out.println(  "Methods: " + java.util.Arrays.toString(methods) + "\n" );
 
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
