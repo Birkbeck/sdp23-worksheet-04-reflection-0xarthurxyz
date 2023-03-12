@@ -20,12 +20,13 @@ public class DescribeClass {
         // - [ ] TODO: implement the functionality for Question 1
         /* Notes:
          * - [ ] emit the interface of the class in Java syntax
+         * (interface or class, modifiers, constructors, methods, fields; no method bodies)
          */
         try {
             // Gets class using class loader
             Class<?> suppliedClass = Class.forName(suppliedClassName);
 
-            // Test: Confirm class loader works as expected
+            // Test: Confirm class loader works as expected 
             Method[] methods = suppliedClass.getMethods();
             System.out.println(Arrays.toString(methods));
 
