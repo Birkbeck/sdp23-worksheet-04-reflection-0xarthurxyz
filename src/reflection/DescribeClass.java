@@ -42,10 +42,8 @@ public class DescribeClass {
             // Prints class methods including modifiers
             java.lang.reflect.Method[] methods = suppliedClass.getMethods();
             System.out.println(  "Methods: " + java.util.Arrays.toString(methods) + "\n" );
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }
