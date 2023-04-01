@@ -11,10 +11,11 @@ public class DescribeClass {
          * Validates the class name supplied via the command line.
          * The program takes exactly one argument.
          */
-        String classNameSuppliedInCLI;
+        String classNameSuppliedViaCLI; // stores the class name supplied in the command line
+        // Checks if the arguments supplied  count is 1
         if ( args.length == 1 ) {
-            classNameSuppliedInCLI = args[0]; // e.g. "java.lang.String"
-            System.out.println("Usage: " + classNameSuppliedInCLI + "\n" );
+            classNameSuppliedViaCLI = args[0]; // e.g. "java.lang.String"
+            System.out.println("Usage: " + classNameSuppliedViaCLI + "\n" );
         } else {
             System.out.println("Argument count: " + args.length + ", max 1 argument." + "\n" );
             return;
@@ -29,7 +30,7 @@ public class DescribeClass {
          */
         try {
             // Loads class
-            Class<?> suppliedClass = java.lang.Class.forName(classNameSuppliedInCLI);
+            Class<?> suppliedClass = java.lang.Class.forName(classNameSuppliedViaCLI);
 
             // Prints class fields
             java.lang.reflect.Field[] fields = suppliedClass.getFields();
