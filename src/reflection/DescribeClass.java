@@ -40,11 +40,13 @@ public class DescribeClass {
             java.lang.reflect.Field[] fields = suppliedClass.getFields(); 
             java.lang.reflect.Constructor<?>[] constructors = suppliedClass.getConstructors();
             java.lang.reflect.Method[] methods = suppliedClass.getMethods();
+            java.lang.reflect.Method[] declaredMethods = suppliedClass.getDeclaredMethods();
 
             // Prints class information to the console
             printArray("Fields", fields);
             printArray("Constructors", constructors);
             printArray("Methods", methods);
+            printArray("Declared Methods", declaredMethods);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
