@@ -35,9 +35,31 @@ public class InstantiateClass {
             }
             // Invariant: list contains only constructors with the correct parameter count
 
-            // Find the parameter types
+            // Find the parameter types of every constructor and keep the ones that take
+            // strings as their only argument
             // You can use `java.lang.reflect.Constructor.getParameterTypes()` to get 
             // the parameter types
+            for (Constructor<?> constructor : constructorList) {
+                // this removes the constructor from the list if the parameter list is not
+                // Strings only
+                for (Class<?> type : constructor.getParameterTypes()) {
+                    if (type != String.class) {
+                        constructorList.remove(constructor);
+                    }
+                }
+                // this does not remove the constructor from the list, only remove it from
+                // the parameter list
+                // java.util.List<Class<?>> paramerterList = java.util.Arrays.asList(
+                //         constructor.getParameterTypes());
+                // paramerterList.removeIf(type -> type != String.class); 
+            }
+
+            // Use Stream API instead to filter the list
+            // constructorList.stream()
+            //         .filter(constructor -> java.util.Arrays
+            //                 .asList(constructor.getParameterTypes())
+            //                 .contains(String.class))
+            //         .collect(java.util.stream.Collectors.toList());
 
             // Create typed argument objects
 
