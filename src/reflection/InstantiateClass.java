@@ -17,15 +17,16 @@ public class InstantiateClass {
             // Loads class
             Class<?> suppliedClass = java.lang.Class.forName(classNameSuppliedViaCLI);
 
-            // Enumarete the constructors of the class
+            // Enumarate the constructors of the class
             Constructor<?>[] constructors = suppliedClass.getConstructors();
             
             // Identify the constructor(s) with the appropriate parameter count
 
             // Convert array into ArrayList to delete constructors with wrong parameter count
             // using `java.util.Arrays.asList()`
-            java.util.List<Constructor<?>> constructorList = java.util.Arrays.asList(constructors);
-
+            java.util.List<Constructor<?>> constructorList = new java.util.LinkedList<Constructor<?>>(
+                    java.util.Arrays.asList(constructors));
+            
             // You can use `java.lang.reflect.Constructor.getParameterCount()` to get the 
             // number of parameters
             for (Constructor<?> constructor : constructorList) {
@@ -62,13 +63,31 @@ public class InstantiateClass {
             //         .collect(java.util.stream.Collectors.toList());
 
             // Create typed argument objects
+            // You can use `java.lang.reflect.Constructor.newInstance()` to create an object
+            Object[] typedArguments = new Object[argumentCount];
+            // Not sure this is the best way to do this
+            for (int i = 0; i < argumentCount; i++) {
+                typedArguments[i] = args[i + 1];
+            }
 
             // Call the proper constructors that take a string as their only argument
             // You can call a dynamic instructor using: `java.lang.reflect.Constructor.newInstance()`
             
+            // There might be multiple constructors that take a string as their only argument
+            // so we need to iterate through the list. Incorrect constructors will throw an error
+            // so we need to catch it and continue to the next constructor
+            for (Constructor<?> constructor : constructorList) {
+                try {
+                    Object object = constructor.newInstance(typedArguments);
+                    System.out.println(object.toString());
+                } catch (Exception e) {
+                    continue;
+                }
+            }
 
         } catch (Exception e) {
-            System.err.println("Class could not be found");
+            System.err.println(e);
+            // System.err.println("Class could not be found");
             System.exit(-1);
         }
 
