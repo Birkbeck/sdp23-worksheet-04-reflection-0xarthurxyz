@@ -61,8 +61,8 @@ public class InstantiateClass {
                         constructorList.remove(i);
                         // System.out.println("Removed: " 
                         //         + constructorList.get(i).toString()); // Debugging
+                        break;
                     }
-                    break;
                 }
             }
             
