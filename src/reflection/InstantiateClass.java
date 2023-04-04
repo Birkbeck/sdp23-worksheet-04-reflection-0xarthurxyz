@@ -29,31 +29,55 @@ public class InstantiateClass {
             
             // You can use `java.lang.reflect.Constructor.getParameterCount()` to get the 
             // number of parameters
-            for (Constructor<?> constructor : constructorList) {
-                if (constructor.getParameterCount() != argumentCount) {
-                    constructorList.remove(constructor);
+            // for (Constructor<?> constructor : constructorList) {
+            //     if (constructor.getParameterCount() != argumentCount) {
+            //         constructorList.remove(constructor);
+            //     }
+            // }
+
+            // Use for loop to remove constructors with wrong parameter count
+            for (int i = 0; i < constructorList.size(); i++) {
+                if (constructorList.get(i).getParameterCount() != argumentCount) {
+                    constructorList.remove(i);
                 }
             }
             // Invariant: list contains only constructors with the correct parameter count
+            
 
             // Find the parameter types of every constructor and keep the ones that take
             // strings as their only argument
             // You can use `java.lang.reflect.Constructor.getParameterTypes()` to get 
             // the parameter types
-            for (Constructor<?> constructor : constructorList) {
-                // this removes the constructor from the list if the parameter list is not
-                // Strings only
-                for (Class<?> type : constructor.getParameterTypes()) {
-                    if (type != String.class) {
-                        constructorList.remove(constructor);
+
+            // System.out.println("Argument count is: " + argumentCount); // Debugging
+
+            // Use for loop to remove constructors that take non-string parameters
+            for (int i = 0; i < constructorList.size(); i++) {
+                // System.out.println("Constructor " + constructorList.get(i).toString() 
+                //         + " has " + constructorList.get(i).getParameterTypes().length 
+                //         + " parameters"); // Debugging
+                for (int j = 0; j < constructorList.get(i).getParameterTypes().length; j++) {
+                    if (constructorList.get(i).getParameterTypes()[j] != String.class) {
+                        constructorList.remove(i);
+                        // System.out.println("Removed: " 
+                        //         + constructorList.get(i).toString()); // Debugging
                     }
+                    break;
                 }
-                // this does not remove the constructor from the list, only remove it from
-                // the parameter list
-                // java.util.List<Class<?>> paramerterList = java.util.Arrays.asList(
-                //         constructor.getParameterTypes());
-                // paramerterList.removeIf(type -> type != String.class); 
             }
+            
+
+            // for (Constructor<?> constructor : constructorList) {
+            //     // this removes the constructor from the list if the parameter list is not
+            //     // Strings only
+            //     for (Class<?> type : constructor.getParameterTypes()) {
+            //         if (type != String.class) {
+            //             constructorList.remove(constructor);
+            //         }
+            //     }
+            // }
+
+            
 
             // Use Stream API instead to filter the list
             // constructorList.stream()
