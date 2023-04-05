@@ -29,9 +29,9 @@ public class HypotheticalStudentAssignment {
 
 	// Constructor
 	// Fail because there is no zero-argument constructor
-	public HypotheticalStudentAssignment() {
-		this.privateField1 = "Hello";
-		this.privateField2 = "world";
+	public HypotheticalStudentAssignment(String firstArg, String secondArg) {
+		this.privateField1 = firstArg;
+		this.privateField2 = secondArg;
 		this.privateField3 = "!";
 		this.privateField4 = "More";
 		this.privateField5 = "than four fields";
