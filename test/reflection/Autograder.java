@@ -35,7 +35,7 @@ public class Autograder {
 
     @Test
     public void givenClassName_whenClassHasMoreThanFourFields_thenFail() {
-        Assertions.assertTrue(SUPPLIED_CLASS.getFields().length <= 4);
+        Assertions.assertTrue(SUPPLIED_CLASS.getDeclaredFields().length <= 4);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class Autograder {
         // `getFields()` returns an array with all accessible fields for the class.
         // `getDeclaredFields()` returns an array with all declared fields for the class,
         //  including all private fields.
-        Assertions.assertTrue(SUPPLIED_CLASS.getFields().length > 0);
+        Assertions.assertTrue(SUPPLIED_CLASS.getFields().length == 0);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class Autograder {
     @Test
     public void givenClassName_whenClassHasAnyMethodThatReturnsAnInteger_thenFail() {
         for (java.lang.reflect.Method method : SUPPLIED_CLASS.getDeclaredMethods()) {
-            Assertions.assertFalse( method.getReturnType().equals( java.lang.Integer.class ) );
+            Assertions.assertFalse( method.getReturnType().equals( int.class ) );
         }
     }
     
