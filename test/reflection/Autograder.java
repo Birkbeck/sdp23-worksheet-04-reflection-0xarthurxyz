@@ -14,7 +14,7 @@ public class Autograder {
     //    + any method that returns an `int`,
     //    + missing a zero-argument constructor.
 
-    static final String CLASS_NAME = "HypotheticalStudentAssignment.java";
+    static final String CLASS_NAME = "HypotheticalStudentAssignment";
     static final String PACKAGE_NAME = "reflection";
     static final String SUPPLIED_CLASS_NAME = PACKAGE_NAME + "." + CLASS_NAME;
     static Class<?> SUPPLIED_CLASS = null; 
