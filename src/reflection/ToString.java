@@ -18,7 +18,7 @@ public class ToString {
 
         if (fields.length == 0 || fields == null) {
             // If `obj` has no fields
-            return "No fields";
+            stringRepresentation += "No fields";
         } else {
             // If `obj` has fields
             // Adds number of fields to string representation
@@ -63,11 +63,10 @@ public class ToString {
                 // Adds new line to for each field
                 stringRepresentation += "\n";
             }
+            // Remove trailing space
+            stringRepresentation = stringRepresentation
+                    .substring(0, stringRepresentation.length() - 1);
         }
-
-        // Remove trailing space
-        stringRepresentation = stringRepresentation
-                .substring(0, stringRepresentation.length() - 1);
 
         // Return beautified string version of `obj`
         return stringRepresentation;
